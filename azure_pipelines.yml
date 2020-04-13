@@ -8,17 +8,16 @@ steps:
     displayName: Prepare
   - script: |
       make host_debug
-      cp lib/debug/linux-x86_64/libzt.a $(Build.ArtifactStagingDirectory)/linux-x86_64-debug-libzt.a
     displayName: Build Debug Version
   - script: |
       make host
-      cp lib/release/linux-x86_64/libzt.a $(Build.ArtifactStagingDirectory)/linux-x86_64-release-libzt.a
     displayName: Build Release Version
+  - script: |
+      tar -czf $(Build.ArtifactsStagingDirectory/libzt-linux-x86_64.tgz include lib LICENSE.GPL-3
   - task: GitHubRelease@0
     displayName: Upload GitHub Release
     inputs:
       gitHubConnection: github
       tagSource: manual
       tag: 1.3.1.2
- 
 
