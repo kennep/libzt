@@ -13,7 +13,7 @@ steps:
       make host
     displayName: Build Release Version
   - script: |
-      tar -czf $(Build.ArtifactsStagingDirectory)/libzt-linux-x86_64.tgz include lib LICENSE.GPL-3
+      tar -czf $(Build.ArtifactStagingDirectory)/libzt-linux-x86_64.tgz include lib LICENSE.GPL-3
     displayName: Prepare distribution package
   - task: GitHubRelease@0
     displayName: Upload distribution package
