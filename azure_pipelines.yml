@@ -1,0 +1,20 @@
+pool:
+  vmImage: 'Ubuntu 18.04'
+
+steps:
+  - script: |
+      make update
+      make patch
+    displayName: Prepare
+  - script: make host_debug
+    displayName: Build Debug Version
+  - script: make host
+    displayName: Build Release Version
+  - task: GitHubRelease@0
+    inputs:
+      gitHubConnection: github
+      assets: |
+        lib/debug/linux-x86_64/libzt.a
+        lib/release/linux-x86_64/libzt.a
+ 
+
